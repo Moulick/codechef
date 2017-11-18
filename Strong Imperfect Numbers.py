@@ -230,7 +230,38 @@ def strong(n):
     primes = primefactors(n)
 
     for x in primes:
-        if n % (x * x) != 0:
+        if n % (x * x) == 0:
+            pass
+        else:
             return False
 
     return True
+
+import math
+def is_powerable(n):
+
+    if n <= 1:
+        return True
+    for i in range(2, int(math.sqrt(n)+1)):
+
+        p = i
+        while(p<=n):
+            p *=i
+
+            if p==n:
+                return True
+    return False
+
+def trojan(n):
+
+    if not is_powerable(n) and strong(n):
+        return True
+    else:
+        return False
+
+
+for i in range(int(input().strip())):
+    if trojan(int(input().strip())):
+        print("YES")
+    else:
+        print("NO")
